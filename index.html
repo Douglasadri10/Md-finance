@@ -1,16 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MD Finance</title>
-    <link href="style.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MD Finance</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <main>
-        <h1>Welcome to MD Finance</h1>
-        <p>This app looks and feels like a native mobile app.</p>
-    </main>
+  <div id="app">
+    <h1>Welcome to MD Finance</h1>
+    <p>This is your personal finance tracker.</p>
+    <div id="login-box">
+      <input type="email" id="email" placeholder="Email"/>
+      <input type="password" id="password" placeholder="Password"/>
+      <button onclick="login()">Login</button>
+      <button onclick="register()">Register</button>
+    </div>
+    <div id="dashboard" style="display:none;">
+      <h2>Dashboard</h2>
+      <p>Welcome, <span id="user-email"></span></p>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <script src="script.js" type="module"></script>
 </body>
 </html>
