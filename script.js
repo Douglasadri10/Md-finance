@@ -1,41 +1,43 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+// Firebase setup
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDxEXAMPLE-KEY",
-  authDomain: "md-finance.firebaseapp.com",
-  projectId: "md-finance",
-  storageBucket: "md-finance.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcd1234"
+  apiKey: "AIzaSyCIjGdHFgiHRKano1ePQVREcoF3_5Vl2Ew",
+  authDomain: "md-finance-65c27.firebaseapp.com",
+  projectId: "md-finance-65c27",
+  storageBucket: "md-finance-65c27.appspot.com",
+  messagingSenderId: "824719341075",
+  appId: "1:824719341075:web:0e4a8f2eaa4716324831e6",
+  measurementId: "G-7WNT50JPR7"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-window.register = () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => alert("Registered!"))
-    .catch((error) => alert(error.message));
-};
-
-window.login = () => {
+// LOGIN
+document.getElementById("login-btn").addEventListener("click", () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      document.getElementById("login-box").style.display = "none";
-      document.getElementById("dashboard").style.display = "block";
-      document.getElementById("user-email").textContent = email;
+    .then(userCredential => {
+      alert("Login bem-sucedido!");
     })
-    .catch((error) => alert(error.message));
-};
+    .catch(error => {
+      alert("Erro ao fazer login: " + error.message);
+    });
+});
 
-window.logout = () => {
-  signOut(auth).then(() => {
-    document.getElementById("login-box").style.display = "block";
-    document.getElementById("dashboard").style.display = "none";
-  });
-};
+// REGISTRO
+document.getElementById("register-btn").addEventListener("click", () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(userCredential => {
+      alert("Registro concluído com sucesso!");
+    })
+    .catch(error => {
+      alert("Erro ao registrar: " + error.message);
+    });
+});
